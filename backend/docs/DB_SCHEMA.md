@@ -1,4 +1,4 @@
-Firestore Database Schema — Symmetry App
+# Firestore Database Schema — Symmetry App
 
 Este documento define la estructura de la base de datos utilizada por el backend de la aplicación **Symmetry**, desarrollada con Firebase Firestore.  
 Cada artículo se almacena como un documento dentro de la colección `articles`.  
@@ -6,7 +6,7 @@ Las miniaturas y otros recursos multimedia se guardan en **Firebase Cloud Storag
 
 ---
 
-Collection: `articles`
+# Collection: `articles`
 
 Cada documento representa un artículo de la aplicación.  
 Incluye metadatos, contenido, y referencias a recursos externos almacenados en Cloud Storage.
@@ -30,7 +30,7 @@ Incluye metadatos, contenido, y referencias a recursos externos almacenados en C
 
 ---
 
-Ejemplo de documento
+# Ejemplo de documento
 
 ```json
 {
