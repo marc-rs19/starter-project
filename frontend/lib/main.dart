@@ -1,3 +1,4 @@
+import 'config/theme/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_clean_architecture/core/resources/data_state.dart';
@@ -72,7 +73,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Daily News',
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
+
+        // 👇 AQUI USAMOS EL TEMA
+        theme: buildAppTheme(),
+
         initialRoute: '/',
         routes: {
           '/': (context) => const DailyNewsPage(),
