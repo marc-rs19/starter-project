@@ -1,7 +1,34 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
-    // TODO: WRITE ANY NECESSARY FIRESTORE RULES HERE
+    match /articles/{articleId} {
+      allow read: if resource.data.isPublished == true;
+      allow create, update, delete: if request.auth != null
+        && (
+          // El autor puede modificar sus propios artículos
+          request.auth.uid == request.resource.data.authorId
+          ||
+          // O un usuario con rol admin
+          request.auth.token.role == 'admin'
+        );
+
+      // Validación mínima: debe contener los campos esenciales
+      function isValidArticle() {
+        return request.resource.data.keys().hasAll([
+          'title',
+          'slug',
+          'category',
+          'content',
+          'thumbnailURL',
+          'mediaFolderPath',
+          'isPublished',
+          'createdAt',
+          'updatedAt'
+        ]);
+      }
+
+      // Permitir crear/editar solo si el artículo es válido
+      allow create, update: if isValidArticle() && request.auth != null;
+    }
   }
 }
