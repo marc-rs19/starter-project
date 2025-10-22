@@ -3,16 +3,17 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /articles/{articleId} {
       allow read: if resource.data.isPublished == true;
-      allow create, update, delete: if request.auth != null
-        && (
+      allow create, update, delete: if request.auth != null &&
+        (
           // El autor puede modificar sus propios artículos
-          request.auth.uid == request.resource.data.authorId
-          ||
+          request.auth.uid == request.resource.data.authorId ||
           // O un usuario con rol admin
           request.auth.token.role == 'admin'
-        );
+        ) &&
+        // Y además el documento debe ser válido
+        isValidArticle();
 
-      // Validación mínima: debe contener los campos esenciales
+      // Comprobar que el documento contiene los campos requeridos
       function isValidArticle() {
         return request.resource.data.keys().hasAll([
           'title',
@@ -26,9 +27,6 @@ service cloud.firestore {
           'updatedAt'
         ]);
       }
-
-      // Permitir crear/editar solo si el artículo es válido
-      allow create, update: if isValidArticle() && request.auth != null;
     }
   }
 }
