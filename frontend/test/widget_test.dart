@@ -29,10 +29,8 @@ void main() {
   testWidgets('renderiza la home Daily News', (WidgetTester tester) async {
     final useCase = GetArticleUseCase(_FakeArticleRepository());
 
-    // NOTA: ya no es const porque le pasamos un argumento.
     await tester.pumpWidget(MyApp(getArticleUseCase: useCase));
 
-    // Aseguramos que aparece el título de la app
     expect(find.text('Daily News'), findsOneWidget);
   });
 }

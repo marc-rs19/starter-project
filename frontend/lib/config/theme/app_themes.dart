@@ -33,7 +33,7 @@ ThemeData buildAppTheme() {
         borderRadius: BorderRadius.circular(16),
       ),
       color: AppColors.card,
-      surfaceTintColor: Colors.transparent, // evita tinte gris en Material 3
+      surfaceTintColor: Colors.transparent,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.purple,

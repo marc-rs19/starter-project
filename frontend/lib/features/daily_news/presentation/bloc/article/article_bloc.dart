@@ -14,7 +14,6 @@ class ArticleBloc extends Cubit<ArticleState> {
     try {
       final result = await _getArticleUseCase.call();
 
-      // Si tu caso de uso devuelve un DataState, necesitas acceder a los datos así:
       if (result.data != null) {
         emit(ArticleLoaded(result.data!));
       } else {

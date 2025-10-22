@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_clean_architecture/core/resources/data_state.dart';
 
-// Importamos nuestros blocs y páginas
+// Importación de blocs y páginas
 import 'features/daily_news/presentation/bloc/article/article_bloc.dart';
 import 'features/daily_news/presentation/pages/home/daily_news.dart';
 import 'features/daily_news/presentation/pages/article_detail/article_detail.dart';
@@ -73,10 +73,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Daily News',
-
-        // 👇 AQUI USAMOS EL TEMA
         theme: buildAppTheme(),
-
         initialRoute: '/',
         routes: {
           '/': (context) => const DailyNewsPage(),

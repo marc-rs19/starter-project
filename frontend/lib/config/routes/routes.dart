@@ -14,11 +14,10 @@ class AppRoutes {
       case '/ArticleDetails':
         return _materialRoute(
           ArticleDetailsView(article: settings.arguments as ArticleEntity),
-        ); // <- nombre real
+        );
 
       case '/SavedArticles':
-        return _materialRoute(
-            const SavedArticles()); // <- tu clase se llama así
+        return _materialRoute(const SavedArticles());
 
       default:
         return _materialRoute(const DailyNewsPage());
